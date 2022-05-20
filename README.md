@@ -18,7 +18,7 @@ OSCAR is a Discord bot built to assist the [Open-Source Hub community](https://o
 
 OSCAR runs on [Node 16](https://nodejs.org/en/download/) and recommends [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/) for dependency management.
 
-OSCAR also requires environemnt variables to connect to the right services. Create a `.env` at the root of your directory, and add the variables defined in the [.env.sample](.env.sample) file.
+OSCAR also requires environment variables to connect to the right services. Create a `.env` at the root of your directory, and add the variables defined in the [.env.sample](.env.sample) file.
 
 ### Setup steps
 
