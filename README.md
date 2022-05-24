@@ -29,12 +29,38 @@ OSCAR also requires environment variables to connect to the right services. Crea
 
 ## Deployment
 
-> TODO
+OSCAR is deployed as a web worker to Heroku.
+
+### First-time setup
+
+1. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli) on your machine. You can check whether the CLI is installed correctly by running:
+
+```
+heroku -v
+```
+
+2. Add the Heroku remote. This will ask you to log in to Heroku, which you can do using the credentials in 1Password.
+
+```
+heroku git:remote -a oscar-discord
+```
+
+### Upload new code to the server
+
+```
+git push heroku main
+```
 
 ### Uploading commands to the server
 
-> TODO
-
 ```
 yarn upload:commands
+```
+
+### Debugging
+
+Tail the Heroku logs locally:
+
+```
+heroku logs --tail
 ```

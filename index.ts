@@ -32,7 +32,12 @@ client.on("interactionCreate", async (interaction) => {
   );
 
   if (commandName === "verify") {
+    const logText = `User ${interaction.user.username} (${interaction.user.id}) called /verify... `;
+
     if (userHasMaintainerRole) {
+      console.log(
+        logText + `They already have the "${maintainerRole.name}" role.`
+      );
       await interaction.reply({
         content: `You already have the **${maintainerRole.name}** role!`,
         ephemeral: true,
@@ -43,6 +48,9 @@ client.on("interactionCreate", async (interaction) => {
 
       // If there's no matching user in OSH, we require verification first
       if (!discordUser) {
+        console.log(
+          logText + `They haven't linked their OSH and Discord accounts.`
+        );
         await interaction.reply({
           content:
             "Please [log in to your Open-Source Hub account](https://opensourcehub.io/login) and click **Verify with Discord**, then try again.",
@@ -54,6 +62,10 @@ client.on("interactionCreate", async (interaction) => {
 
       const userIsMaintainer = await isUserMaintainer(discordUser);
       if (!userIsMaintainer) {
+        console.log(
+          logText + `OSCAR granted them the "${maintainerRole.name}" role.`
+        );
+
         await (interaction.member.roles as any).add(maintainerRole);
 
         await interaction.reply({
@@ -61,6 +73,10 @@ client.on("interactionCreate", async (interaction) => {
           ephemeral: true,
         });
       } else {
+        console.log(
+          logText +
+            `Role note granted because they are not a maintainer on OSH.`
+        );
         await interaction.reply({
           content:
             "You are not the maintainer of any project on Open-Source Hub... yet. Want to list your project? [**Learn how to contribute!**](https://github.com/codesee-io/opensourcehub#readme)",
