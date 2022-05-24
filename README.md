@@ -47,6 +47,14 @@ heroku git:remote -a oscar-discord
 
 ### Upload new code to the server
 
+Run the following command to deploy your code to Heroku:
+
+```
+yarn deploy
+```
+
+This is an alias for:
+
 ```
 git push heroku main
 ```
