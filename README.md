@@ -61,8 +61,32 @@ git push heroku main
 
 ### Uploading commands to the server
 
+When we add new commands or update their name, we need to upload the latest commands **to each server that uses the bot**.
+
+This is done with the following code:
+
+```js
+const commands = [
+  new SlashCommandBuilder()
+    .setName("verify")
+    .setDescription(
+      "Grants the Maintainer role for maintainers of repositories listed on opensourcehub.io"
+    ),
+].map((command) => command.toJSON());
 ```
-yarn upload:commands
+
+See [`src/setup-commands.ts`](./src/setup-commands.ts) for the source.
+
+We've provided a shell command that executes that code using 3 arguments:
+
+- `-t`: the bot token
+- `-a`: the application id (aka "client id")
+- `-g`: the guild id (aka "server id")
+
+For example:
+
+```
+yarn upload:commands -t 'bot.token.goes.here' -a 'application_id' -g 'guild_id'
 ```
 
 ### Debugging
@@ -72,3 +96,19 @@ Tail the Heroku logs locally:
 ```
 heroku logs --tail
 ```
+
+## Adding OSCAR to a server
+
+OSCAR is not listed in the Discord Bot directory because we want to control where it is installed. So for now, it needs to be added to servers manually.
+
+Visit the [Discord Developer Portal](https://discord.com/developers/applications/), choose the OSCAR application, then navigate to "OAuth2" > "URL Generator".
+
+There, you'll need to check 2 scopes and 1 permission:
+
+1. scope: bot
+2. scope: application.commands
+3. permission: Administrator
+
+<img src="./docs/scopes.png" width="400" />
+
+Then, copy the generated URL at the bottom and paste it in your browser. Discord will take you through the rest of the process.
