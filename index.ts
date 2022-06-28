@@ -7,8 +7,6 @@ verifyEnvironmentVariables();
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
-const MAINTAINER_ROLE_ID = "976611882028912690";
-
 client.once("ready", () => {
   console.log("Startup sequence complete. OSCAR is watching.");
 });
@@ -26,9 +24,11 @@ client.on("interactionCreate", async (interaction) => {
     interaction.member.roles as GuildMemberRoleManager
   ).cache.map((role) => ({ label: role.name, value: role.id }));
 
-  const maintainerRole = interaction.guild.roles.cache.get(MAINTAINER_ROLE_ID);
+  const maintainerRole = interaction.guild.roles.cache.get(
+    process.env.VERIFIED_ROLE_ID
+  );
   const userHasMaintainerRole = rolesForThisUser.some(
-    (role) => role.value === MAINTAINER_ROLE_ID
+    (role) => role.value === process.env.VERIFIED_ROLE_ID
   );
 
   if (commandName === "verify") {

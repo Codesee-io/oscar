@@ -5,6 +5,7 @@ const requiredEnvVars = [
   "FIREBASE_SERVICE_ACCOUNT_KEY",
   "MAINTAINER_ENDPOINT_URL",
   "OSCAR_API_KEY",
+  "VERIFIED_ROLE_ID",
 ];
 
 /**
