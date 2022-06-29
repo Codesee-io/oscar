@@ -12,6 +12,8 @@ OSCAR is a Discord bot built to assist the [Open-Source Hub community](https://o
 
 - `/verify`: checks that the caller is the maintainer of at least one project on opensourcehub.io. If so, that user will receive the role of "Maintainer".
 
+<img src="./docs/verify.png" width="467" />
+
 ## Local development
 
 ### Requirements
